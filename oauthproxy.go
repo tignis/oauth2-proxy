@@ -976,9 +976,7 @@ func (p *OAuthProxy) addHeadersForProxying(rw http.ResponseWriter, req *http.Req
 		}
 
 		if len(session.Groups) > 0 {
-			for _, group := range session.Groups {
-				rw.Header().Add("X-Auth-Request-Groups", group)
-			}
+			rw.Header().Set("X-Auth-Request-Groups", strings.Join(session.Groups,","))
 		} else {
 			rw.Header().Del("X-Auth-Request-Groups")
 		}
