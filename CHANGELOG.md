@@ -12,14 +12,23 @@
 ## Breaking Changes
 
 - [#722](https://github.com/oauth2-proxy/oauth2-proxy/pull/722) When a Redis session store is configured, OAuth2-Proxy will fail to start up unless connection and health checks to Redis pass
+- [#800](https://github.com/oauth2-proxy/oauth2-proxy/pull/800) Fix import path for v7. The import path has changed to support the go get installation.
+  - You can now `go get github.com/oauth2-proxy/oauth2-proxy/v7` to get the latest `v7` version of OAuth2 Proxy
+  - Import paths for package are now under `v7`, eg `github.com/oauth2-proxy/oauth2-proxy/v7/pkg/<module>`
+- [#753](https://github.com/oauth2-proxy/oauth2-proxy/pull/753) A bug in the Azure provider prevented it from properly passing the configured protected `--resource`
+  via the login url. If this option was used in the past, behavior will change with this release as it will
+  affect the tokens returned by Azure. In the past, the tokens were always for `https://graph.microsoft.com` (the default)
+  and will now be for the configured resource (if it exists, otherwise it will run into errors)
 
 ## Changes since v6.1.1
 
+- [#753](https://github.com/oauth2-proxy/oauth2-proxy/pull/753) Pass resource parameter in login url (@codablock)
 - [#575](https://github.com/oauth2-proxy/oauth2-proxy/pull/575) Stop accepting legacy SHA1 signed cookies (@NickMeves)
 - [#722](https://github.com/oauth2-proxy/oauth2-proxy/pull/722) Validate Redis configuration options at startup (@NickMeves)
 - [#791](https://github.com/oauth2-proxy/oauth2-proxy/pull/791) Remove GetPreferredUsername method from provider interface (@NickMeves)
 - [#764](https://github.com/oauth2-proxy/oauth2-proxy/pull/764) Document bcrypt encryption for htpasswd (and hide SHA) (@lentzi90)
 - [#616](https://github.com/oauth2-proxy/oauth2-proxy/pull/616) Add support to ensure user belongs in required groups when using the OIDC provider (@stefansedich)
+- [#800](https://github.com/oauth2-proxy/oauth2-proxy/pull/800) Fix import path for v7 (@johejo)
 
 # v6.1.1
 
